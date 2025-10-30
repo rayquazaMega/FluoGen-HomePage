@@ -85,46 +85,58 @@
   </div>
 </section>
 
-<!-- Main Showcase Image -->
+<!-- Main Fixed Image -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <div class="content has-text-centered">
-          <img src="static/images/show.png" alt="FluoGen generative foundation model overview.">
-          <p class="is-size-5 has-text-centered" style="margin-top: 1rem;">
-            we present FluoGen, a diffusion-based generative foundation model designed to improve the performance of AI-based methods in data-constrained fluorescence image processing.
+          <img src="static/images/show.png" alt="FluoGen, a diffusion-based generative foundation model.">
+          <p class="has-text-justified" style="margin-top: 1rem;">
+            We present FluoGen, a diffusion-based generative foundation model designed to improve the performance of AI-based methods in data-constrained fluorescence image processing.
           </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End Main Showcase Image -->
+<!-- End Main Fixed Image -->
 
 
-<!-- Image carousel -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item">
-          <img src="static/images/show0.png" alt="Qualitative comparison of FluoGen with other generative methods."/>
-          <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
-            Visual comparison of super-resolution results from FluoGen-s and other state-of-the-art methods on typical organelles (F-actin, microtubules, ER, and CCPs) from the BioSR dataset. Corresponding ground truth (GT) images are shown for reference.
-          </h2>
-        </div>
-        <div class="item">
-          <img src="static/images/show2.png" alt="Large-scale, heterogeneous fluorescence microscopy dataset."/>
-          <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
-            Large-scale, heterogeneous fluorescence microscopy dataset for generative pre-training. The scale and diversity of the dataset provide a robust foundation for learning generalizable representations of cellular organization.
-          </h2>
+<!-- Scrollable Images Showcase -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Scrollable container -->
+    <div style="max-height: 800px; overflow-y: auto; padding: 1rem; border: 1px solid #dbdbdb; border-radius: 6px;">
+
+      <!-- First Image and Text -->
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <div class="content has-text-centered">
+            <img src="static/images/show0.png" alt="Qualitative comparison of FluoGen with other generative methods on representative cellular structures.">
+            <p class="has-text-justified" style="margin-top: 1rem;">
+              Visual comparison of super-resolution results from FluoGen-s and other state-of-the-art methods on typical organelles (F-actin, microtubules, ER, and CCPs) from the BioSR dataset. Corresponding ground truth (GT) images are shown for reference.
+            </p>
+          </div>
         </div>
       </div>
+
+      <!-- Second Image and Text -->
+      <div class="columns is-centered" style="margin-top: 2rem;">
+        <div class="column is-full">
+          <div class="content has-text-centered">
+            <img src="static/images/show2.png" alt="Large-scale, heterogeneous fluorescence microscopy dataset for generative pre-training.">
+            <p class="has-text-justified" style="margin-top: 1rem;">
+              Large-scale, heterogeneous fluorescence microscopy dataset for generative pre-training. The scale and diversity of the dataset provide a robust foundation for learning generalizable representations of cellular organization.
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
-<!-- End image carousel -->
+<!-- End Scrollable Images Showcase -->
 
 
   <footer class="footer">
