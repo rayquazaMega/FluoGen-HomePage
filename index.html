@@ -43,6 +43,71 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+
+  <!-- CSS for Image Comparison Slider -->
+  <style>
+    .comparison-container {
+      position: relative;
+      width: 100%;
+      /* Maintain a 16:9 aspect ratio, adjust as needed */
+      padding-top: 56.25%; 
+      overflow: hidden;
+      border-radius: 6px;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .comparison-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* This scales the images to fit without distortion */
+      pointer-events: none;
+    }
+    .comparison-after-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .comparison-handle {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.8);
+      cursor: ew-resize;
+      transform: translateX(-2px);
+      z-index: 10;
+    }
+    .comparison-handle::after {
+      content: '↔';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #333;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    }
+    .comparison-title {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-weight: bold;
+    }
+  </style>
+
 </head>
 <body>
 
@@ -103,6 +168,65 @@
 <!-- End Main Fixed Image -->
 
 
+<!-- Image Comparison Sliders Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered is-multiline">
+      
+      <!-- Slider 1 -->
+      <div class="column is-one-quarter">
+        <div class="comparison-container" data-comparison-id="1">
+          <img src="static/images/compare-1-before.png" alt="Before 1">
+          <div class="comparison-after-wrapper">
+            <img src="static/images/compare-1-after.png" alt="After 1">
+          </div>
+          <div class="comparison-handle"></div>
+        </div>
+        <p class="comparison-title">Comparison 1</p>
+      </div>
+
+      <!-- Slider 2 -->
+      <div class="column is-one-quarter">
+        <div class="comparison-container" data-comparison-id="2">
+          <img src="static/images/compare-2-before.png" alt="Before 2">
+          <div class="comparison-after-wrapper">
+            <img src="static/images/compare-2-after.png" alt="After 2">
+          </div>
+          <div class="comparison-handle"></div>
+        </div>
+         <p class="comparison-title">Comparison 2</p>
+      </div>
+
+      <!-- Slider 3 -->
+      <div class="column is-one-quarter">
+        <div class="comparison-container" data-comparison-id="3">
+          <img src="static/images/compare-3-before.png" alt="Before 3">
+          <div class="comparison-after-wrapper">
+            <img src="static/images/compare-3-after.png" alt="After 3">
+          </div>
+          <div class="comparison-handle"></div>
+        </div>
+         <p class="comparison-title">Comparison 3</p>
+      </div>
+
+      <!-- Slider 4 -->
+      <div class="column is-one-quarter">
+        <div class="comparison-container" data-comparison-id="4">
+          <img src="static/images/compare-4-before.png" alt="Before 4">
+          <div class="comparison-after-wrapper">
+            <img src="static/images/compare-4-after.png" alt="After 4">
+          </div>
+          <div class="comparison-handle"></div>
+        </div>
+        <p class="comparison-title">Comparison 4</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- End Image Comparison Sliders Section -->
+
+
 <!-- Scrollable Images Showcase -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -156,6 +280,59 @@
     </div>
   </div>
 </footer>
+
+
+<!-- JavaScript for Image Comparison Slider -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.comparison-container').forEach(container => {
+    let isDragging = false;
+    const handle = container.querySelector('.comparison-handle');
+    const afterWrapper = container.querySelector('.comparison-after-wrapper');
+
+    const startDrag = (e) => {
+      isDragging = true;
+      // Prevents text selection during drag
+      document.body.style.cursor = 'ew-resize';
+      container.style.cursor = 'ew-resize';
+    };
+
+    const stopDrag = () => {
+      isDragging = false;
+      document.body.style.cursor = 'default';
+       container.style.cursor = 'default';
+    };
+
+    const onDrag = (e) => {
+      if (!isDragging) return;
+
+      // Use changedTouches for touch events, or clientX for mouse events
+      const clientX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+      
+      const rect = container.getBoundingClientRect();
+      let offsetX = clientX - rect.left;
+
+      // Constrain the handle within the container
+      if (offsetX < 0) offsetX = 0;
+      if (offsetX > rect.width) offsetX = rect.width;
+
+      const percentage = (offsetX / rect.width) * 100;
+      handle.style.left = `${percentage}%`;
+      afterWrapper.style.width = `${percentage}%`;
+    };
+
+    // Mouse events
+    handle.addEventListener('mousedown', startDrag);
+    document.addEventListener('mouseup', stopDrag);
+    document.addEventListener('mousemove', onDrag);
+
+    // Touch events for mobile
+    handle.addEventListener('touchstart', startDrag);
+    document.addEventListener('touchend', stopDrag);
+    document.addEventListener('touchmove', onDrag);
+  });
+});
+</script>
 
 <!-- Statcounter tracking code -->
   
